@@ -1,18 +1,20 @@
-from discord.ext import commands, tasks
 import metrics_utils
+
 import dbl
 import discord
-import os
+from discord.ext import commands, tasks
 from dotenv import load_dotenv
+
+import os
 
 load_dotenv()
 DBL_TOKEN = os.getenv("DBL_TOKEN")
+
 
 class TopGG(commands.Cog):
     """
     This example uses tasks provided by discord.ext to create a task that posts guild count to top.gg every 30 minutes.
     """
-
     def __init__(self, bot):
         self.bot = bot
         self.token = DBL_TOKEN
