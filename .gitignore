@@ -1,1 +1,4 @@
 *.env
+metrics.json
+__pycache__/
+.idea/

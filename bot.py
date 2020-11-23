@@ -5,17 +5,19 @@ import metrics_utils
 from dbl_class import TopGG
 
 import discord
-import redis
 
-redis_server = redis.Redis()
-AUTH_TOKEN = str(redis_server.get('AUTH_TOKEN').decode('utf-8'))
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 TICTACTOE_PROMPT = "!2 tt"
 
 
 class ZeroTwoBot(discord.Client):
     async def on_ready(self):
-        self.dbl = TopGG(client)
+        # self.dbl = TopGG(client)
         num_servers = str(len(list(client.guilds)))
         print("Connected")
         msg_count = round(metrics_utils.get_msg_count() / 1000, 2)
@@ -40,5 +42,5 @@ class ZeroTwoBot(discord.Client):
 
 
 client = ZeroTwoBot()
-client.run(AUTH_TOKEN)
+client.run(DISCORD_TOKEN)
 
