@@ -1,4 +1,4 @@
-# 002 Discord Bot
+# 002 Discord Bot (Refactored)
 [![Support Server](https://img.shields.io/discord/779446389746171914.svg?color=7289da&label=002_Test_Server&logo=discord&style=flat-square)](https://discord.gg/cVAGdqst48)
 
 [![Discord Bots](https://top.gg/api/widget/status/774732068282171424.svg)](https://top.gg/bot/774732068282171424)
