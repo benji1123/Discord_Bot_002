@@ -33,7 +33,7 @@ class TopGG(commands.Cog):
             await self.dblpy.post_guild_count(server_count)
             print('Posted server count ({})'.format(server_count))
 
-            msg_count = round(metrics_utils.get_msg_count() / 1000, 3)
+            msg_count = metrics_utils.get_msg_count()
             await self.bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"{server_count} | {msg_count}k msgs"))
         except Exception as e:
             print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))

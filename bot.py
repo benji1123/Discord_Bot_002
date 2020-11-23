@@ -1,6 +1,7 @@
 from games import RockPaperScissorsHandler, TicTacToeHandler
 from conversation import conversation
 import metrics_utils
+from dbl_class import TopGG
 
 import discord
 from dotenv import load_dotenv
@@ -13,9 +14,8 @@ TICTACTOE_PROMPT = "!2 tt"
 
 
 class ZeroTwoBot(discord.Client):
-    @staticmethod
-    async def on_ready():
-        # self.dbl = TopGG(client)
+    async def on_ready(self):
+        self.dbl = TopGG(client)
         print("Connected")
         msg_count = metrics_utils.get_msg_count()
         servers = client.guilds
