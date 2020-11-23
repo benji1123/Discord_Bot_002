@@ -6,8 +6,8 @@ def get_msg_count():
 	data = json.load(metric_file)
 	metric_file.close()
 	msg_count = data["conversation"]
-	msg_count = round(msg_count, 2)
-	return msg_count
+	msg_count = round(msg_count/1000, 3)
+	return f"{msg_count}k"
 
 
 def increment_field_count(field: str):
@@ -20,7 +20,7 @@ def increment_field_count(field: str):
 	metric_file = open("metrics.json", "w+")
 	metric_file.write(json.dumps(data))
 	metric_file.close()
-	
+
 
 def increment_conversation_count():
 	increment_field_count("conversation")
