@@ -2,3 +2,6 @@
 metrics.json
 __pycache__/
 .idea/
+venv/
+conversation/zerotwo/
+*.DS_Store

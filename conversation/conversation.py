@@ -41,7 +41,7 @@ THINGS_TO_RESPOND_TO = {
 
 
 async def respond_to_google(msg):
-    msg_content = msg.content
+    msg_content = msg.content.lower()
     if msg_content.startswith("!2 g"):
         print(f"googling / {msg_content}")
         msg_content = msg_content.split("!2 g")
@@ -54,7 +54,7 @@ async def respond_to_google(msg):
 
 
 async def respond_to_name(msg):
-    msg_content = msg.content
+    msg_content = msg.content.lower()
     """Send a msg when 02's name is detected"""
     if any(name in msg_content for name in NAMES):
         await send_random(msg, NAMES_RESPONSES, img_dir=IMAGE_DIR)
@@ -62,7 +62,7 @@ async def respond_to_name(msg):
 
 async def respond_to_certain_things(msg):
     """Send pre-programmed responses to certain messages"""
-    msg_content = msg.content
+    msg_content = msg.content.lower()
     if msg_content in THINGS_TO_RESPOND_TO.keys():
         responses = THINGS_TO_RESPOND_TO[msg_content]
         await send_random(msg, responses)
