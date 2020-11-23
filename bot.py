@@ -24,7 +24,7 @@ class ZeroTwoBot(discord.Client):
         activity_name = '| new GIFs -> "hi 02"'
         await client.change_presence(
             activity=discord.Activity(
-                type=discord.ActivityType.listening, name=activity_name
+                type=discord.ActivityType.watching, name=activity_name
             )
         )
 
