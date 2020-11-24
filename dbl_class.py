@@ -30,16 +30,23 @@ class TopGG(commands.Cog):
         """This function runs every 30 minutes to automatically update your server count."""
         await self.bot.wait_until_ready()
         try:
-            # post server count to Top.gg
-            server_count = len(self.bot.guilds)
-            await self.dblpy.post_guild_count(server_count)
-            print('Posted server count ({})'.format(server_count))
+            # server count
+            guilds = self.bot.guilds
+            guild_count = len(guilds)
+            await self.dblpy.post_guild_count(guild_count)
+            print('Posted server count ({})'.format(guild_count))
+            # member count across all guilds
+            member_count = 0
+            for g in guilds:
+                member_count += g.member_count
+            print(f"num users: {member_count}")
             # shuffle the bot's presence
             msg_count_presence = f"{metrics_utils.get_msg_count()} msgs"
+            member_count_presence = f"{round(member_count/1000, 2)}k users"
             help_presence = "try !2 help"
-            presence = random.choice([help_presence, msg_count_presence])
+            presence = random.choice([help_presence, msg_count_presence, msg_count_presence, member_count_presence])
             await self.bot.change_presence(
-                activity=discord.Activity(type=discord.ActivityType.watching, name=f"{server_count} | {presence}"))
+                activity=discord.Activity(type=discord.ActivityType.watching, name=f"{guild_count} | {presence}"))
         except Exception as e:
             print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
 
