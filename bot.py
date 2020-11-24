@@ -1,5 +1,5 @@
 from games import RockPaperScissorsHandler, TicTacToeHandler
-from conversation import conversation
+from conversation import conversation, help_msg_sender
 import metrics_utils
 from dbl_class import TopGG
 
@@ -34,6 +34,7 @@ class ZeroTwoBot(discord.Client):
             return
 
         # conversation
+        await help_msg_sender.respond_to_help(msg)
         await conversation.respond_to_name(msg)
         await conversation.respond_to_certain_things(msg)
         await conversation.respond_to_google(msg)
