@@ -26,7 +26,7 @@ class RockPaperScissors:
     def get_outcome(self, user_choice, cpu_choice):
         outcomes = self.moves[user_choice]
         if cpu_choice == outcomes[USER_WIN]:
-            return 'LOSS'
+            return 'WIN'
         elif cpu_choice == outcomes[DRAW]:
             return 'DRAW'
-        return 'WIN'
+        return 'LOSS'
