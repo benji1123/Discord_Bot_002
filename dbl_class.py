@@ -42,11 +42,11 @@ class TopGG(commands.Cog):
             print(f"num users: {member_count}")
             # shuffle the bot's presence
             msg_count_presence = f"{metrics_utils.get_msg_count()} msgs"
-            member_count_presence = f"{round(member_count/1000, 2)}k users"
+            member_count_presence = f"{round(member_count/1000, 2)}k darlings"
             help_presence = "try !2 help"
-            presence = random.choice([help_presence, msg_count_presence, msg_count_presence, member_count_presence])
+            presence = random.choice([msg_count_presence, msg_count_presence, member_count_presence])
             await self.bot.change_presence(
-                activity=discord.Activity(type=discord.ActivityType.watching, name=f"{guild_count} | {presence}"))
+                activity=discord.Activity(type=discord.ActivityType.playing, name=f"in {guild_count} | {presence}"))
         except Exception as e:
             print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
 
