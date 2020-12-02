@@ -1,5 +1,5 @@
 '''
-source code taken from: 
+source code taken from:
 https://towardsdatascience.com/build-a-simple-chatbot-with-python-and-google-search-c000aa3f73f0
 '''
 
@@ -20,7 +20,6 @@ def chatbot_query(query, index=0):
     try:
         search_result_list = list(search(query, tld="co.in", num=10, stop=3, pause=1))
         page = requests.get(search_result_list[index])
-        tree = html.fromstring(page.content)
         soup = BeautifulSoup(page.content, features="lxml")
         article_text = ''
         article = soup.findAll('p')
@@ -40,4 +39,3 @@ def chatbot_query(query, index=0):
     except:
         if len(result) == 0: result = fallback
         return result
-

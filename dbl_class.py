@@ -30,6 +30,7 @@ class TopGG(commands.Cog):
         """This function runs every 30 minutes to automatically update your server count."""
         await self.bot.wait_until_ready()
         try:
+            print(f"user: {len(self.bot.users)}")
             # server count
             guilds = self.bot.guilds
             guild_count = len(guilds)
@@ -43,7 +44,6 @@ class TopGG(commands.Cog):
             # shuffle the bot's presence
             msg_count_presence = f"{metrics_utils.get_msg_count()} msgs"
             member_count_presence = f"{round(member_count/1000, 2)}k darlings"
-            help_presence = "try !2 help"
             presence = random.choice([msg_count_presence, msg_count_presence, member_count_presence])
             await self.bot.change_presence(
                 activity=discord.Activity(type=discord.ActivityType.playing, name=f"in {guild_count} | {presence}"))

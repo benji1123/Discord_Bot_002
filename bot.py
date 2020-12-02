@@ -25,6 +25,7 @@ class ZeroTwoBot(discord.Client):
         # conversation
         await help_msg_sender.respond_to_help(msg)
         await conversation.respond_to_name(msg)
+        await conversation.respond_to_trigger_word(msg)
         await conversation.respond_to_certain_things(msg)
         await conversation.respond_to_google(msg)
 
