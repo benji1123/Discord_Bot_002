@@ -63,7 +63,7 @@ async def send_random(msg: discord.Message, responses: List[str]):
     random_response = random.choice(responses)
     # check if response is an image-file
     if is_image(file_path=random_response):
-        await msg.channel.send(file=discord.File(img_dir + random_response))
+        await msg.channel.send(file=discord.File(random_response))
     elif ".DS_Store" not in random_response:
         await msg.channel.send(random_response)
     else:
