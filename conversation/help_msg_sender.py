@@ -20,7 +20,7 @@ HELP_MSG_EMBED.add_field(name="🤘 Rock Paper Scissors", value="`!2 rps`", inli
 HELP_MSG_EMBED.add_field(name="🙏 Vote", value="<https://top.gg/bot/774732068282171424/vote>", inline=True)
 
 
-async def respond_to_help(msg):
+async def respond_to_help(msg) -> None:
     msg_content = msg.content.lower()
     if msg_content == "!2 help":
         await msg.channel.send(embed=HELP_MSG_EMBED)

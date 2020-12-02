@@ -22,11 +22,11 @@ class TopGG(commands.Cog):
         self.dblpy = dbl.DBLClient(self.bot, self.token)
         self.update_stats.start()
 
-    def cog_unload(self):
+    def cog_unload(self) -> None:
         self.update_stats.cancel()
 
     @tasks.loop(minutes=1)
-    async def update_stats(self):
+    async def update_stats(self) -> None:
         """This function runs every 30 minutes to automatically update your server count."""
         await self.bot.wait_until_ready()
         try:
@@ -51,5 +51,5 @@ class TopGG(commands.Cog):
             print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
 
 
-def setup(bot):
+def setup(bot) -> None:
     bot.add_cog(TopGG(bot))

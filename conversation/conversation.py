@@ -6,6 +6,7 @@ import discord
 
 import os
 import random
+from typing import List
 
 IMAGE_FILE_EXTENSIONS = [".jpg", ".png", ".gif"]
 IMAGE_DIR = os.path.join(os.path.dirname(__file__), "zerotwo/")
@@ -17,14 +18,14 @@ EXPLICIT_THINGS_TO_RESPOND_TO = csv_utils.get_dialog_dict(data_path="conversatio
 TRIGGER_WORDS_TO_RESPOND_TO = csv_utils.get_dialog_dict(data_path="conversation/dialog_data/trigger_words.csv")
 
 
-async def respond_to_name(msg):
+async def respond_to_name(msg: discord.Message):
     """Send a response if 02's name or alias is detected."""
     msg_content = msg.content.lower()
     if any(name in msg_content for name in NAMES):
         await send_random(msg, RESPONSE_POOL_FOR_NAME)
 
 
-async def respond_to_trigger_word(msg):
+async def respond_to_trigger_word(msg: discord.Message):
     """Send a response if a message contains a certain word."""
     msg_content = msg.content.lower()
     for trigger in TRIGGER_WORDS_TO_RESPOND_TO:
@@ -32,14 +33,14 @@ async def respond_to_trigger_word(msg):
             await send_random(msg, responses=TRIGGER_WORDS_TO_RESPOND_TO[trigger])
 
 
-async def respond_to_certain_things(msg):
+async def respond_to_certain_things(msg: discord.Message):
     """Send a response to a specific message."""
     msg_content = msg.content.lower()
     if msg_content in EXPLICIT_THINGS_TO_RESPOND_TO:
         await send_random(msg, responses=EXPLICIT_THINGS_TO_RESPOND_TO[msg_content])
 
 
-async def respond_to_google(msg):
+async def respond_to_google(msg: discord.Message):
     """Send a response to a google request."""
     msg_content = msg.content.lower()
     # google-command prefix
@@ -55,7 +56,7 @@ async def respond_to_google(msg):
 # helpers
 
 
-async def send_random(msg, responses):
+async def send_random(msg: discord.Message, responses: List[str]):
     """Sends a random message from a list, including images"""
     print(f"respond to {msg.content}")
     metrics_utils.increment_conversation_count()  # count outgoing messages
@@ -69,5 +70,5 @@ async def send_random(msg, responses):
         await msg.channel.send("u found a bug in my code!")
 
 
-def is_image(file_path):
+def is_image(file_path: str) -> bool:
     return file_path[-4:].lower() in IMAGE_FILE_EXTENSIONS and os.path.exists(file_path)

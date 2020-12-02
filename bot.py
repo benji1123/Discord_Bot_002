@@ -13,11 +13,11 @@ DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 
 class ZeroTwoBot(discord.Client):
-    async def on_ready(self):
+    async def on_ready(self) -> None:
         self.dbl = TopGG(client)
         print("Connected")
 
-    async def on_message(self, msg):
+    async def on_message(self, msg) -> None:
         # ignore self
         if msg.author == self.user:
             return
