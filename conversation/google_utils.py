@@ -13,7 +13,7 @@ from bs4 import BeautifulSoup
 # print(chatbot_query('how old is samuel l jackson'))
 
 
-def chatbot_query(query, index=0):
+def chatbot_query(query, index=0) -> str:
     fallback = 'Sorry, I cannot think of a reply for that.'
     result = ''
 
