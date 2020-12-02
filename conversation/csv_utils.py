@@ -1,4 +1,5 @@
 import csv
+from typing import List, Tuple
 
 PROMPT = 0
 DEFAULT_MESSAGE = ";)"
@@ -15,7 +16,8 @@ def get_dialog_dict(data_path: str) -> dict:
     return dialog_dict
 
 
-def parse_conversation(conversation):
+def parse_conversation(conversation: List[str]) -> Tuple[str, List[str]]:
+    """Parse prompt and response-pool from a conversation"""
     prompt = conversation[PROMPT]
     if len(conversation) >= 2:
         response_pool = [response for response in conversation[PROMPT+1:] if response != ""]

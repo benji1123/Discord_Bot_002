@@ -1,7 +1,7 @@
 import json
 
 
-def get_msg_count():
+def get_msg_count() -> str:
 	metric_file = open("metrics.json", "r")
 	data = json.load(metric_file)
 	metric_file.close()
@@ -10,7 +10,7 @@ def get_msg_count():
 	return f"{msg_count}k"
 
 
-def increment_field_count(field: str):
+def increment_field_count(field: str) -> None:
 	metric_file = open("metrics.json", "r")
 	data = json.load(metric_file)
 	metric_file.close()
@@ -22,14 +22,14 @@ def increment_field_count(field: str):
 	metric_file.close()
 
 
-def increment_conversation_count():
+def increment_conversation_count() -> None:
 	increment_field_count("conversation")
 
 
-def increment_tictactoe_count():
+def increment_tictactoe_count() -> None:
 	increment_field_count("tictactoe")
 
 
-def increment_rps_count():
+def increment_rps_count() -> None:
 	increment_field_count("rps")
 
