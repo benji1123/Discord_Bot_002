@@ -43,7 +43,7 @@ class TopGG(commands.Cog):
             print(f"num users: {member_count}")
             # shuffle the bot's presence
             msg_count_presence = f"{metrics_utils.get_msg_count()} msgs"
-            member_count_presence = f"{round(member_count/1000, 2)}k darlings"
+            member_count_presence = f"~{round(member_count/1000, 1)}k darlings"
             presence = random.choice([msg_count_presence, msg_count_presence, member_count_presence])
             await self.bot.change_presence(
                 activity=discord.Activity(type=discord.ActivityType.playing, name=f"in {guild_count} | {presence}"))
