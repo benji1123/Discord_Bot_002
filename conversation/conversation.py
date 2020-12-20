@@ -11,7 +11,7 @@ from typing import List
 IMAGE_FILE_EXTENSIONS = [".jpg", ".png", ".gif"]
 IMAGE_DIR = os.path.join(os.path.dirname(__file__), "zerotwo/")
 
-NAMES = {" 002", " 02", "002 ", "02 ", "darling", "dino", "dinosaur", "waifu", "zerotwo", "o2", "oxygen", "003"}
+NAMES = {" 002", " 02", "002 ", "02 ", "darling", "dino", "dinosaur", "waifu", "zero two", "o2", "oxygen", "003"}
 RESPONSE_POOL_FOR_NAME = [IMAGE_DIR + filename for filename in os.listdir(IMAGE_DIR)]
 
 EXPLICIT_THINGS_TO_RESPOND_TO = csv_utils.get_dialog_dict(data_path="conversation/dialog_data/fixed_responses.csv")
