@@ -3,19 +3,22 @@ from conversation import conversation, help_msg_sender
 import metrics_utils
 from dbl_class import TopGG
 
-import discord
+from discord import AutoShardedClient
 from dotenv import load_dotenv
 
 import os
 
+SHARD_COUNT=2
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
 
-class ZeroTwoBot(discord.Client):
+class ZeroTwoBot(AutoShardedClient):
+
     async def on_ready(self) -> None:
         self.dbl = TopGG(client)
         print("Connected")
+        print(f"num shards: {len(self.latencies)}")
 
     async def on_message(self, msg) -> None:
         # ignore self
@@ -34,5 +37,5 @@ class ZeroTwoBot(discord.Client):
         await TicTacToeHandler.create_ttt_game(client, msg)
 
 
-client = ZeroTwoBot()
+client = ZeroTwoBot(shard_count=SHARD_COUNT)
 client.run(DISCORD_TOKEN)

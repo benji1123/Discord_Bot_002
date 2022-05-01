@@ -46,8 +46,10 @@ class TopGG(commands.Cog):
             member_count_presence = f"~{round(member_count/1000000, 1)}M darlings"
             xmas_presence = "MERRY XMAS"
             presence = random.choice([msg_count_presence, msg_count_presence, member_count_presence])
+            
+            shard_count = len(self.bot.latencies)
             await self.bot.change_presence(
-                activity=discord.Activity(type=discord.ActivityType.playing, name=f"in {guild_count} | {presence}"))
+                activity=discord.Activity(type=discord.ActivityType.playing, name=f"in {guild_count}({shard_count}) | {presence}"))
         except Exception as e:
             print('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
 
