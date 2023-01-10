@@ -14,7 +14,7 @@ DBL_TOKEN = os.getenv("DBL_TOKEN")
 
 class TopGG(commands.Cog):
     """
-    This example uses tasks provided by discord.ext to create a task that posts guild count to top.gg every 30 minutes.
+    This example uses tasks provided by discord.ext to create a task that posts guild count to top.gg periodically.
     """
     def __init__(self, bot):
         self.bot = bot
@@ -25,9 +25,9 @@ class TopGG(commands.Cog):
     def cog_unload(self) -> None:
         self.update_stats.cancel()
 
-    @tasks.loop(minutes=1)
+    @tasks.loop(minutes=10)
     async def update_stats(self) -> None:
-        """This function runs every 30 minutes to automatically update your server count."""
+        """update server count periodically."""
         await self.bot.wait_until_ready()
         try:
             print(f"user: {len(self.bot.users)}")

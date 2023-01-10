@@ -5,3 +5,4 @@ __pycache__/
 venv/
 conversation/zerotwo/
 *.DS_Store
+local_data/

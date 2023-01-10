@@ -1,5 +1,6 @@
 from games import RockPaperScissorsHandler, TicTacToeHandler
-from conversation import conversation, help_msg_sender
+from conversation import conversation
+from senders import help_msg_sender, metrics_report_sender
 import metrics_utils
 from dbl_class import TopGG
 
@@ -30,11 +31,13 @@ class ZeroTwoBot(AutoShardedClient):
         await conversation.respond_to_name(msg)
         await conversation.respond_to_trigger_word(msg)
         await conversation.respond_to_certain_things(msg)
-        await conversation.respond_to_google(msg)
 
         # games
         await RockPaperScissorsHandler.create_rps_game(client, msg)
         await TicTacToeHandler.create_ttt_game(client, msg)
+
+        # metrics report
+        await metrics_report_sender.respond_to_report_request(msg)
 
 
 client = ZeroTwoBot(shard_count=SHARD_COUNT)

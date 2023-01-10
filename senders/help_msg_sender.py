@@ -2,7 +2,8 @@ import discord
 
 HELP_MSG_EMBED = discord.Embed(title="002 Guide", url="https://top.gg/bot/774732068282171424",
                                description="Join <https://discord.gg/cVAGdqst48> "
-                                           "to suggest GIFs or bot-dialog.",
+                                           "to suggest GIFs or bot-dialog.\n"
+                                           "Buy me a coffee https://ko-fi.com/blen10",
                                color=0xffadd2)
 HELP_MSG_EMBED.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/en/7/71/Franxx_Zero_Two.jpg")
 HELP_MSG_EMBED.add_field(name="🎥 Trigger a 002 GIF",

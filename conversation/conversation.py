@@ -1,4 +1,3 @@
-from conversation import google_utils
 from conversation import csv_utils
 import metrics_utils
 
@@ -19,38 +18,28 @@ TRIGGER_WORDS_TO_RESPOND_TO = csv_utils.get_dialog_dict(data_path="conversation/
 
 
 async def respond_to_name(msg: discord.Message):
-    """Send a response if 02's name or alias is detected."""
+    """Send a response from a pool if 02's name or alias is detected."""
     msg_content = msg.content.lower()
     if any(name in msg_content for name in NAMES):
+        metrics_utils.increment_name()
         await send_random(msg, RESPONSE_POOL_FOR_NAME)
 
 
 async def respond_to_trigger_word(msg: discord.Message):
-    """Send a response if a message contains a certain word."""
+    """Send a response from a pool if a message contains a certain word."""
     msg_content = msg.content.lower()
     for trigger in TRIGGER_WORDS_TO_RESPOND_TO:
         if trigger in msg_content:
+            metrics_utils.increment_trigger_word(trigger)
             await send_random(msg, responses=TRIGGER_WORDS_TO_RESPOND_TO[trigger])
 
 
 async def respond_to_certain_things(msg: discord.Message):
-    """Send a response to a specific message."""
+    """Send a response from a pool to a specific message."""
     msg_content = msg.content.lower()
     if msg_content in EXPLICIT_THINGS_TO_RESPOND_TO:
+        metrics_utils.increment_fixed_response(msg_content)
         await send_random(msg, responses=EXPLICIT_THINGS_TO_RESPOND_TO[msg_content])
-
-
-async def respond_to_google(msg: discord.Message):
-    """Send a response to a google request."""
-    msg_content = msg.content.lower()
-    # google-command prefix
-    if msg_content.startswith("!2 g"):
-        msg_content = msg_content.split("!2 g")
-        if len(msg_content) == 2:
-            query = msg_content[1]
-            # get result for query
-            result = google_utils.chatbot_query(query)
-            await msg.channel.send(result)
 
 
 # helpers
@@ -63,6 +52,7 @@ async def send_random(msg: discord.Message, responses: List[str]):
     random_response = random.choice(responses)
     # check if response is an image-file
     if is_image(file_path=random_response):
+        metrics_utils.increment_images()
         await msg.channel.send(file=discord.File(random_response))
     elif ".DS_Store" not in random_response:
         await msg.channel.send(random_response)
