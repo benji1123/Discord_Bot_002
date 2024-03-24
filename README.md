@@ -3,7 +3,6 @@
 
 [![Discord Bots](https://top.gg/api/widget/status/774732068282171424.svg)](https://top.gg/bot/774732068282171424)
 [![Discord Bots](https://top.gg/api/widget/servers/774732068282171424.svg)](https://top.gg/bot/774732068282171424)
-[![Discord Bots](https://top.gg/api/widget/upvotes/774732068282171424.svg)](https://top.gg/bot/774732068282171424)
 ---
 
 I host this chatbot on an AWS EC2 instance in a [GNU screen session](https://www.gnu.org/software/screen/). 
